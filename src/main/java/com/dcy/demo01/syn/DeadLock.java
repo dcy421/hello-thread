@@ -60,11 +60,12 @@ class Makeup extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                synchronized (mirror) {
+                    //一秒钟后想获得镜子
+                    System.out.println(this.girlName + "获得镜子的锁");
+                }
             }
-            synchronized (mirror) {
-                //一秒钟后想获得镜子
-                System.out.println(this.girlName + "获得镜子的锁");
-            }
+
         } else {
             synchronized (mirror) {
                 //获取镜子的锁
@@ -74,11 +75,12 @@ class Makeup extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                synchronized (lipstick) {
+                    //一秒钟后想获得口红
+                    System.out.println(this.girlName + "获得口红的锁");
+                }
             }
-            synchronized (lipstick) {
-                //一秒钟后想获得口红
-                System.out.println(this.girlName + "获得口红的锁");
-            }
+
         }
     }
 }
